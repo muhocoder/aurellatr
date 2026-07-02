@@ -3,7 +3,7 @@ import {
   Plus, Trash2, Edit3, Eye, EyeOff, Package, Star, Users, ShoppingCart,
   X, Check, BarChart3, ArrowLeft, Image as ImageIcon, ToggleLeft, ToggleRight, Upload
 } from 'lucide-react'
-import { supabase, supabaseAdmin, Product, Review, Order, CATEGORIES } from '@/lib/supabase'
+import { supabase, Product, Review, Order, CATEGORIES } from '@/lib/supabase'
 import { useApp } from '@/lib/context'
 
 type AdminPageProps = {
@@ -119,7 +119,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
     try {
       const ext = file.name.split('.').pop()
       const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-      const { error } = await supabaseAdmin.storage
+      const { error } = await supabase.storage
         .from('product-images')
         .upload(fileName, file, { upsert: true })
 
