@@ -7,32 +7,21 @@
   }
 }
 
-/* ─── Sayfa geçiş animasyonu ──────────────────────────────── */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* ─── Sayfa geçiş animasyonu (sadece opacity — transform kullanmıyoruz, mobilde overflow yapıyor) ─── */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
 .page-enter {
-  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fadeIn 0.35s ease-out both;
 }
 
 /* ─── Scroll-triggered section giriş animasyonu ─────────── */
 @keyframes sectionReveal {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -46,25 +35,6 @@
 
 .reveal.visible {
   animation: sectionReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* ─── Ürün kartı geçişleri ───────────────────────────────── */
-.product-card-image {
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.product-card-image:hover {
-  transform: scale(1.04);
-}
-
-/* ─── Genel buton hover yumuşatması ─────────────────────── */
-button, a {
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ─── Dropdown / overlay smooth shadow ──────────────────── */
-.dropdown-shadow {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* ─── Shimmer / iskelet yükleme efekti ──────────────────── */
