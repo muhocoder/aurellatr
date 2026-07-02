@@ -42,10 +42,10 @@ export default function Footer({ onNavigate }: FooterProps) {
             <a href="mailto:halebimuhaned@gmail.com" className="w-9 h-9 border border-white/20 rounded-sm flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
               <Mail size={16} />
             </a>
-            <a href="tel:+905001234567" className="w-9 h-9 border border-white/20 rounded-sm flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
+            <a href="tel:+905366422984" className="w-9 h-9 border border-white/20 rounded-sm flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
               <Phone size={16} />
             </a>
-            <a href="https://wa.me/905001234567" target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-white/20 rounded-sm flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
+            <a href="https://wa.me/905366422984" target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-white/20 rounded-sm flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
               <WhatsAppIcon size={16} />
             </a>
           </div>
@@ -79,7 +79,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <h4 className="text-white text-xs tracking-[0.3em] uppercase mb-6">İletişim</h4>
           <div className="space-y-3 text-sm font-light text-white/50">
             <p>halebimuhaned@gmail.com</p>
-            <p>+90 500 123 45 67</p>
+            <p>+90 536 642 29 84</p>
             <p className="leading-relaxed">Müşteri hizmetleri<br />Hafta içi 09:00 – 18:00</p>
           </div>
           <div className="mt-6 p-4 border border-white/10 rounded-sm">
