@@ -32,12 +32,39 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
           backgroundImage: 'url(/hero-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'right center',
-          backgroundColor: '#EFE6D8',
+          backgroundColor: '#E8DACE',
         }}
       >
-        {/* Sol: opaklıktan şeffafa gradient — resmin kendi yazısını örter, içerik netliğini korur */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#EFE6D8] via-[#EFE6D8]/85 to-[#EFE6D8]/10" />
+        {/* Sol gradient — içerik alanını temiz tutar */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#E8DACE] via-[#E8DACE]/80 to-transparent" />
 
+        {/* AURELLE yazısı + dekoratif desen — sağ üst, fotoğrafın boş duvarında */}
+        <div className="absolute top-10 right-0 w-1/2 flex flex-col items-center pointer-events-none select-none hidden md:flex">
+          <p
+            className="font-serif text-[#2C1E10] tracking-[0.55em] text-4xl lg:text-5xl font-light"
+            style={{ letterSpacing: '0.55em' }}
+          >
+            AURELLE
+          </p>
+          {/* Dekoratif desen: ince çizgiler + elmas */}
+          <div className="flex items-center gap-2 mt-3 opacity-70">
+            <div className="flex gap-[3px]">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span key={i} className="block w-[2px] h-[2px] rounded-full bg-[#C4A05C]" />
+              ))}
+            </div>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M5 0L6.2 3.8L10 5L6.2 6.2L5 10L3.8 6.2L0 5L3.8 3.8Z" fill="#C4A05C" />
+            </svg>
+            <div className="flex gap-[3px]">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span key={i} className="block w-[2px] h-[2px] rounded-full bg-[#C4A05C]" />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Sol içerik */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-24">
           <div className="max-w-xl">
             <p className="text-xs tracking-[0.4em] text-primary uppercase mb-4 font-light">
