@@ -102,18 +102,18 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
       {/* Features Banner */}
       <section className="w-full relative">
         {/* Üst geçiş gradyanı */}
-        <div className="absolute top-0 inset-x-0 h-12 bg-gradient-to-b from-[#FAFAF8] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-[#FAFAF8] to-transparent z-10 pointer-events-none" />
         <img
           src="/features-banner.png"
           alt="Zamansız. Dayanıklı. Seninle."
           className="w-full h-auto block"
         />
-        {/* Alt geçiş gradyanı */}
-        <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#F5EFE6]/60 to-transparent z-10 pointer-events-none" />
+        {/* Alt geçiş gradyanı — banner cream → featured products bölümüne */}
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#F5EFE6] to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 bg-secondary/30">
+      <section className="py-16 bg-secondary/30" style={{ background: 'linear-gradient(to bottom, #F5EFE6 0%, rgba(245,239,230,0.3) 60px, rgba(245,239,230,0.3) 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
