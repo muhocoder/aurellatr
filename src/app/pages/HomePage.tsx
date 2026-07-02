@@ -166,15 +166,16 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
 
       {/* Banner */}
       <section
-        className="relative flex items-center justify-center text-center"
+        className="relative flex items-end justify-center text-center pb-12"
         style={{
           backgroundImage: 'url(/banner-bg.jpg)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '420px',
+          backgroundPosition: 'center center',
+          aspectRatio: '16/9',
+          width: '100%',
         }}
       >
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/10" />
         <div className="relative z-10 px-4">
           <button
             onClick={() => onNavigate('products')}
