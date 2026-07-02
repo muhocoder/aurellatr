@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Toaster } from 'sonner'
 import { AppProvider } from '@/lib/context'
 import Navbar from '@/app/components/Navbar'
@@ -47,10 +47,33 @@ function buildHash(page: Page, params?: Record<string, string>): string {
   }
 }
 
+// Scroll-triggered reveal için hook
+function useReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    )
+    const elements = document.querySelectorAll('.reveal')
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  })
+}
+
 function AppContent() {
   const [route, setRoute] = useState<RouteState>(parseHash)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [pageKey, setPageKey] = useState(0)
+
+  useReveal()
 
   useEffect(() => {
     const onHashChange = () => setRoute(parseHash())
@@ -62,6 +85,7 @@ function AppContent() {
     const hash = buildHash(page as Page, params)
     window.location.hash = hash.replace('#', '')
     setRoute({ page: page as Page, params: params || {} })
+    setPageKey(k => k + 1)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -78,7 +102,7 @@ function AppContent() {
         onCategory={setSelectedCategory}
       />
 
-      <main className="flex-1">
+      <main key={pageKey} className="flex-1 page-enter">
         {page === 'home' && (
           <HomePage
             onNavigate={navigate}
@@ -129,7 +153,7 @@ function OrderCompletePage({ onNavigate }: { onNavigate: (p: string) => void }) 
   }, [])
 
   return (
-    <div className="max-w-xl mx-auto px-4 sm:px-6 py-24 text-center">
+    <div className="max-w-xl mx-auto px-4 sm:px-6 py-24 text-center page-enter">
       <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
         <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -143,10 +167,10 @@ function OrderCompletePage({ onNavigate }: { onNavigate: (p: string) => void }) 
         Siparişinizi <strong>Hesabım → Siparişlerim</strong> bölümünden takip edebilirsiniz.
       </p>
       <div className="flex gap-4 justify-center flex-wrap">
-        <button onClick={() => onNavigate('account')} className="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors">
+        <button onClick={() => onNavigate('account')} className="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors duration-200">
           Siparişlerimi Gör
         </button>
-        <button onClick={() => onNavigate('products')} className="border border-border px-8 py-3 text-xs tracking-widest uppercase hover:bg-secondary transition-colors">
+        <button onClick={() => onNavigate('products')} className="border border-border px-8 py-3 text-xs tracking-widest uppercase hover:bg-secondary transition-colors duration-200">
           Alışverişe Devam Et
         </button>
       </div>
