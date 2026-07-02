@@ -68,28 +68,13 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <p className="text-xs tracking-[0.4em] text-primary uppercase mb-3">Koleksiyonlar</p>
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground">Kategorileri Keşfedin</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat.value}
-              onClick={() => { onCategory(cat.value); onNavigate('products') }}
-              className="group flex flex-col items-center gap-3 p-4 border border-border hover:border-primary rounded-sm transition-all hover:bg-secondary"
-            >
-              <div className="w-16 h-16 rounded-full bg-secondary group-hover:bg-white flex items-center justify-center transition-colors overflow-hidden">
-                <Sparkles size={24} className="text-primary" />
-              </div>
-              <span className="text-xs tracking-[0.2em] uppercase text-foreground/70 group-hover:text-primary transition-colors">
-                {cat.label}
-              </span>
-            </button>
-          ))}
-        </div>
+      {/* Features Banner */}
+      <section className="w-full">
+        <img
+          src="/features-banner.png"
+          alt="Zamansız. Dayanıklı. Seninle."
+          className="w-full h-auto block"
+        />
       </section>
 
       {/* Featured Products */}
