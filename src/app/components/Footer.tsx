@@ -26,12 +26,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Brand */}
         <div className="flex flex-col items-start gap-4">
           <div className="flex items-center gap-3">
-            <img
-              src={logoImg}
-              alt="Aurella"
-              className="h-14 w-14 object-contain"
-              style={{ mixBlendMode: 'lighten' }}
-            />
+            <img src={logoImg} alt="Aurella" className="h-14 w-14 object-contain" />
             <div>
               <div className="font-serif text-xl tracking-[0.2em] text-white">AURELLE</div>
               <div className="text-[9px] tracking-[0.3em] text-primary font-light">TIMELESS MINIMAL JEWELRY</div>

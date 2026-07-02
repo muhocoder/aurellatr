@@ -40,28 +40,28 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearch,
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="relative flex items-center justify-between h-16 md:h-20">
-          {/* Mobile menu button */}
-          <button className="md:hidden text-foreground hover:text-primary transition-colors duration-200" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+        <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Logo — absolute center on mobile, static left on desktop */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0 flex items-center gap-2 group"
-          >
-            <img
-              src={logoImg}
-              alt="Aurelle"
-              className="h-10 w-10 md:h-12 md:w-12 object-contain"
-              style={{ mixBlendMode: 'multiply' }}
-            />
-            <div className="hidden sm:block text-left">
-              <div className="font-serif text-xl tracking-[0.2em] text-foreground leading-none">AURELLE</div>
-              <div className="text-[9px] tracking-[0.3em] text-primary font-light">TIMELESS MINIMAL JEWELRY</div>
-            </div>
-          </button>
+          {/* Sol grup: hamburger (mobile) + logo */}
+          <div className="flex items-center gap-3">
+            {/* Mobile menu button */}
+            <button className="md:hidden text-foreground hover:text-primary transition-colors" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+
+            {/* Logo */}
+            <button onClick={() => onNavigate('home')} className="flex items-center gap-2 group">
+              <img
+                src={logoImg}
+                alt="Aurelle"
+                className="h-10 w-10 md:h-12 md:w-12 object-contain"
+              />
+              <div className="hidden sm:block text-left">
+                <div className="font-serif text-xl tracking-[0.2em] text-foreground leading-none">AURELLE</div>
+                <div className="text-[9px] tracking-[0.3em] text-primary font-light">TIMELESS MINIMAL JEWELRY</div>
+              </div>
+            </button>
+          </div>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8 text-sm tracking-wider font-light">
@@ -135,7 +135,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearch,
               )}
             </button>
 
-            {/* User — visible on all screen sizes (same as original) */}
+            {/* User */}
             <div className="relative">
               {user ? (
                 <>

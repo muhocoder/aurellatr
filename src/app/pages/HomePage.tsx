@@ -94,15 +94,22 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
             </div>
           </div>
         </div>
+
+        {/* Alt geçiş gradyanı — hero'dan sonraki bölüme yumuşak geçiş */}
+        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-[#FAFAF8] pointer-events-none" />
       </section>
 
       {/* Features Banner */}
-      <section className="w-full">
+      <section className="w-full relative">
+        {/* Üst geçiş gradyanı */}
+        <div className="absolute top-0 inset-x-0 h-12 bg-gradient-to-b from-[#FAFAF8] to-transparent z-10 pointer-events-none" />
         <img
           src="/features-banner.png"
           alt="Zamansız. Dayanıklı. Seninle."
           className="w-full h-auto block"
         />
+        {/* Alt geçiş gradyanı */}
+        <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#F5EFE6]/60 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Featured Products */}
@@ -154,7 +161,7 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
       </section>
 
       {/* Features / Trust badges */}
-      <section className="py-16 border-t border-border">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -188,7 +195,11 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
           width: '100%',
         }}
       >
+        {/* Üst geçiş gradyanı */}
+        <div className="absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#FAFAF8] to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-black/10" />
+        {/* Alt geçiş gradyanı — footer'a soft geçiş */}
+        <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#1A1A1A]/30 to-transparent pointer-events-none" />
         <div className="relative z-10 px-4">
           <button
             onClick={() => onNavigate('products')}
