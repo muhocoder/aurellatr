@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Toaster } from 'sonner'
 import { AppProvider } from '@/lib/context'
 import Navbar from '@/app/components/Navbar'
@@ -48,7 +48,7 @@ function buildHash(page: Page, params?: Record<string, string>): string {
 }
 
 // Scroll-triggered reveal için hook
-function useReveal() {
+function useReveal(pageKey: number) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,7 +64,7 @@ function useReveal() {
     const elements = document.querySelectorAll('.reveal')
     elements.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  })
+  }, [pageKey])
 }
 
 function AppContent() {
@@ -73,7 +73,7 @@ function AppContent() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [pageKey, setPageKey] = useState(0)
 
-  useReveal()
+  useReveal(pageKey)
 
   useEffect(() => {
     const onHashChange = () => setRoute(parseHash())
