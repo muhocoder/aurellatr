@@ -165,21 +165,24 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
       </section>
 
       {/* Banner */}
-      <section className="py-24 bg-foreground text-white text-center px-4">
-        <p className="text-xs tracking-[0.5em] text-primary uppercase mb-4">Aurelle</p>
-        <h2 className="font-serif text-4xl md:text-5xl mb-6">
-          Her Takı Bir <em className="not-italic text-primary">Hikaye</em>
-        </h2>
-        <p className="text-white/60 font-light mb-8 max-w-md mx-auto text-sm leading-relaxed">
-          En sevdiklerinize ya da kendinize özel bir parça hediye edin.
-          Kaliteli işçilik ve zamansız tasarımla.
-        </p>
-        <button
-          onClick={() => onNavigate('products')}
-          className="bg-primary text-white px-10 py-4 text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
-        >
-          Alışverişe Başla
-        </button>
+      <section
+        className="relative flex items-center justify-center text-center"
+        style={{
+          backgroundImage: 'url(/banner-bg.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '420px',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="relative z-10 px-4">
+          <button
+            onClick={() => onNavigate('products')}
+            className="bg-primary text-white px-10 py-4 text-xs tracking-widest uppercase hover:bg-primary/90 transition-colors"
+          >
+            Alışverişe Başla
+          </button>
+        </div>
       </section>
     </div>
   )
