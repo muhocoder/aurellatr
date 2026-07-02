@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import {
   Plus, Trash2, Edit3, Eye, EyeOff, Package, Star, Users, ShoppingCart,
-  X, Check, BarChart3, ArrowLeft, Image as ImageIcon, ToggleLeft, ToggleRight
+  X, Check, BarChart3, ArrowLeft, Image as ImageIcon, ToggleLeft, ToggleRight, Upload
 } from 'lucide-react'
 import { supabase, Product, Review, Order, CATEGORIES } from '@/lib/supabase'
 import { useApp } from '@/lib/context'
@@ -35,6 +35,8 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
   const [formImages, setFormImages] = useState([''])
   const [formLoading, setFormLoading] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
+  const [uploadingIdx, setUploadingIdx] = useState<number | null>(null)
+  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   // Reviews
   const [reviews, setReviews] = useState<any[]>([])
@@ -110,6 +112,32 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
     })
     setFormImages(product.images?.length ? product.images : [''])
     setShowProductForm(true)
+  }
+
+  const handleImageUpload = async (file: File, idx: number) => {
+    setUploadingIdx(idx)
+    try {
+      const ext = file.name.split('.').pop()
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+      const { error } = await supabase.storage
+        .from('product-images')
+        .upload(fileName, file, { upsert: true })
+
+      if (error) throw error
+
+      const { data: urlData } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(fileName)
+
+      const updated = [...formImages]
+      updated[idx] = urlData.publicUrl
+      setFormImages(updated)
+    } catch (err) {
+      console.error('Yükleme hatası:', err)
+      alert('Resim yüklenirken hata oluştu. Lütfen tekrar deneyin.')
+    } finally {
+      setUploadingIdx(null)
+    }
   }
 
   const handleSaveProduct = async (e: React.FormEvent) => {
@@ -453,32 +481,79 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
 
               {/* Images */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2">Ürün Görselleri (URL)</label>
-                <div className="space-y-2">
+                <label className="block text-xs uppercase tracking-wider text-muted-foreground mb-2">Ürün Görselleri</label>
+                <div className="space-y-3">
                   {formImages.map((img, idx) => (
-                    <div key={idx} className="flex gap-2">
-                      <input
-                        type="url"
-                        value={img}
-                        onChange={e => {
-                          const updated = [...formImages]
-                          updated[idx] = e.target.value
-                          setFormImages(updated)
-                        }}
-                        placeholder="https://örnek.com/resim.jpg"
-                        className="flex-1 px-4 py-2.5 border border-border rounded-sm text-sm focus:outline-none focus:border-primary bg-secondary/20"
-                      />
-                      {img && <img src={img} alt="" className="w-10 h-10 object-cover rounded-sm border border-border" onError={e => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                    <div key={idx} className="flex gap-2 items-start">
+                      <div className="flex-1 space-y-1.5">
+                        {/* Upload button */}
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRefs.current[idx]?.click()}
+                            disabled={uploadingIdx === idx}
+                            className="flex items-center gap-2 px-4 py-2.5 border border-dashed border-primary/50 rounded-sm text-sm text-primary hover:bg-primary/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                          >
+                            <Upload size={14} />
+                            {uploadingIdx === idx ? 'Yükleniyor...' : 'Cihazdan Seç'}
+                          </button>
+                          <input
+                            ref={el => { fileInputRefs.current[idx] = el }}
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={e => {
+                              const file = e.target.files?.[0]
+                              if (file) handleImageUpload(file, idx)
+                              e.target.value = ''
+                            }}
+                          />
+                          {/* URL input */}
+                          <input
+                            type="url"
+                            value={img}
+                            onChange={e => {
+                              const updated = [...formImages]
+                              updated[idx] = e.target.value
+                              setFormImages(updated)
+                            }}
+                            placeholder="veya URL yapıştır..."
+                            className="flex-1 px-4 py-2.5 border border-border rounded-sm text-sm focus:outline-none focus:border-primary bg-secondary/20"
+                          />
+                        </div>
+                      </div>
+                      {/* Preview */}
+                      {img ? (
+                        <img
+                          src={img}
+                          alt=""
+                          className="w-12 h-12 object-cover rounded-sm border border-border flex-shrink-0"
+                          onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-sm border border-border bg-secondary/30 flex items-center justify-center flex-shrink-0">
+                          <ImageIcon size={14} className="text-muted-foreground" />
+                        </div>
+                      )}
+                      {/* Remove */}
                       {formImages.length > 1 && (
-                        <button type="button" onClick={() => setFormImages(prev => prev.filter((_, i) => i !== idx))} className="text-muted-foreground hover:text-destructive transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => setFormImages(prev => prev.filter((_, i) => i !== idx))}
+                          className="text-muted-foreground hover:text-destructive transition-colors mt-2.5 flex-shrink-0"
+                        >
                           <X size={16} />
                         </button>
                       )}
                     </div>
                   ))}
                   {formImages.length < 6 && (
-                    <button type="button" onClick={() => setFormImages(prev => [...prev, ''])} className="text-xs text-primary hover:underline flex items-center gap-1">
-                      <Plus size={12} /> Görsel Ekle
+                    <button
+                      type="button"
+                      onClick={() => setFormImages(prev => [...prev, ''])}
+                      className="text-xs text-primary hover:underline flex items-center gap-1"
+                    >
+                      <Plus size={12} /> Başka Görsel Ekle
                     </button>
                   )}
                 </div>
@@ -488,7 +563,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
                 <button type="button" onClick={() => setShowProductForm(false)} className="flex-1 py-3 border border-border text-sm hover:bg-secondary transition-colors rounded-sm">
                   İptal
                 </button>
-                <button type="submit" disabled={formLoading} className="flex-1 py-3 bg-primary text-white text-sm tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-50 rounded-sm flex items-center justify-center gap-2">
+                <button type="submit" disabled={formLoading || uploadingIdx !== null} className="flex-1 py-3 bg-primary text-white text-sm tracking-wider uppercase hover:bg-primary/90 transition-colors disabled:opacity-50 rounded-sm flex items-center justify-center gap-2">
                   <Check size={15} /> {formLoading ? 'Kaydediliyor...' : (editProduct ? 'Güncelle' : 'Ekle')}
                 </button>
               </div>
