@@ -1,0 +1,44 @@
+Merhaba bugün senle mücevher/kolye/bileklik/saat/takı/aksesuar satışı yapılabilecek profesyonel bir websitesi yapacağız.
+
+site / işletme adı: Aurella
+
+odemeler shopierin sanal post altyapısı kullanılarak yapılacaktır.
+
+websitesi beyaz tonlarda lüks / premimum ve sadelik içericektir zaten sana işletmenin logosunu atacağım logo sitede de bulunsun ve uyumlu bir tasarım olsun. bu websitesi bildiğimiz trendyol gibi bir kaç özeliğe sahip olmalı:
+
+istenilen özellikler:
+
+1: Favoriye ekleme:
+
+müşteri istediği ürünü favoriye ekleyerek kaydedebilecek fakat bunu yapabilmesi için mutlaka hesap açması gerekmektedir.
+
+2: hesap açma: 
+
+Müşteri sepete ekleme / satın alma / favoriye ekleme / ürüne yorum yapabilme gibi ozellikleri kullanabilmesi için mutlaka sitede hesap açmalıdır. 
+
+3: satın alma ve sepete ekleme:
+
+müşteri istediği ürünü sepete ekleyip devam et dediği vakit veya sepetimdeki ürünlere gidip odemeye geç yaptığı vakit direkt bu bahsettiğim shopier odeme kısmına gidip kart bilgileri ile satın alma işlemini tamamlayacak.
+
+
+not: shopier hesabı açtım fakat 24 saat onaylanmasını bekliyorum bu yüzden sana shopier hesabıma ait Merchant ID gibi (shopıer sanal post için gerekli her şeyi) şimdi veremeyeceğim bu yüzden proje dizininde bir json dosyası oluştur bu dediğim id ler elime ulaşınca direkt olarak o json dosyasına koyarım ben kendım sonra sıte mutlaka eksiksiz bir sekilde çalışmalı ve odemeler alınmalı json dosyasını ona gore ayarla ve açıklamalar koy developer için hangi id vb gerektiğine göre.
+
+4: Admin girişi:
+
+Sitede bir de tabikide adminin girişi gerekli admin siteye girerek yeni ürün ekleme / ürün silme ürünleri ayarlama / ürünlere açıklama ekleme / ürünlere yapılan yorumları kaldırma / istenilen ürünleri öne çıkarma gibi özellikleri yapacak aynı şekilde admin sifre ve kullanıcı adı da bir json dosyasında olmalı şimdilik admin sifre ve kullanıcı adını test ve test yap bu arada admin giriş yaparak istediği herşeyi kolay ve kafası karışmadan yapmasını sağlamamız gerek. herşey eksiksiz ve tam olmalı.
+
+NOT: admin ne kadar çok ürün eklerse eklesin sitede taşma ve bozulma vb şeyler olmayacak ve flexible bir site olsun site hem mobil hemde web uyumlu olmalı.
+
+
+site altyapısı olarak github pages kullanacağız yani orda barınsın site.
+dataları yönetmek / tutmak için ise supabase kullanabiliriz.
+
+proje tamamlanınca bu github apisini kullanarak projeyi push et ve github pages de hazır olsun:
+github api key: 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
+
+supa base:
+
+https://kkyoysucqmhkpxdjiaaa.supabase.co
+sb_publishable_15abO5W7wbqHgL4SKuOaSQ_4Vr6jaVi
+
+projeye başlamadan önce gerekli bir şey varsa bana sor sana sağlayacağım sana eksik bir sey falan verdiysem aydınlat beni. unutma site tek seferde tam çalışır hale gelmeli shopier kısmınıda unutma lütfen herşey ayarlanmış olmalı ben shopier için gerekli idleri yakın da json içine koyduğumda site otomatik sorunsuz çalışmalı. projeyi yaparken 0 hata almamız için internetten dökümasyon ve entegrasyonlara ait şeyleri okuyarak yap lütfen.

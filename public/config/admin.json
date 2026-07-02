@@ -1,0 +1,15 @@
+{
+  "_README": "Admin girişi için kullanılacak e-posta bilgisi. Supabase Auth üzerinden giriş yapılır.",
+  "_note": "Bu e-posta adresi Supabase Authentication'a kayıtlı olmalıdır. Supabase panelinden Authentication > Users > Invite User ile admin kullanıcısı oluşturun.",
+
+  "admin_email": "admin@aurella.com",
+  "_admin_email_note": "Admin kullanıcısının e-posta adresi. Giriş şifresi Supabase panelinde belirlenir.",
+
+  "_initial_setup": {
+    "step1": "Supabase dashboard'a gidin: https://app.supabase.com",
+    "step2": "Authentication > Users bölümüne gidin",
+    "step3": "'Invite User' ile admin@aurella.com adresini davet edin veya 'Add User' ile direkt oluşturun",
+    "step4": "Şifre olarak istediğiniz güvenli bir şifre belirleyin",
+    "step5": "Bu JSON dosyasındaki admin_email alanını kullandığınız e-posta ile eşleştirin"
+  }
+}

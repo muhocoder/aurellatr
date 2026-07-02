@@ -1,0 +1,13 @@
+{
+  "_README": "Shopier Virtual POS entegrasyonu için gerekli bilgiler. Shopier merchant hesabınız onaylandıktan sonra bu dosyayı doldurun.",
+  "_docs": "https://dev.shopier.com",
+
+  "api_key": "YOUR_API_KEY_HERE",
+  "_api_key_note": "Shopier merchant panelinden API Ayarları > API Anahtarı bölümünden alın.",
+
+  "api_secret": "YOUR_API_SECRET_HERE",
+  "_api_secret_note": "Shopier merchant panelinden API Ayarları > API Gizli Anahtarı bölümünden alın.",
+
+  "merchant_id": "YOUR_MERCHANT_ID_HERE",
+  "_merchant_id_note": "Shopier merchant panelinden Profil bölümünden alın. (İsteğe bağlı, bazı entegrasyonlarda kullanılır.)"
+}
