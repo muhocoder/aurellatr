@@ -26,15 +26,17 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-secondary">
-        <div className="absolute inset-0 grid grid-cols-3 opacity-30">
-          {HERO_ITEMS.map(item => (
-            <div key={item.label} className="overflow-hidden">
-              <img src={item.img} alt={item.label} className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-secondary/30" />
+      <section
+        className="relative min-h-[85vh] flex items-center overflow-hidden"
+        style={{
+          backgroundImage: 'url(/hero-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'right center',
+          backgroundColor: '#EFE6D8',
+        }}
+      >
+        {/* Sol: opaklıktan şeffafa gradient — resmin kendi yazısını örter, içerik netliğini korur */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EFE6D8] via-[#EFE6D8]/85 to-[#EFE6D8]/10" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-24">
           <div className="max-w-xl">
@@ -47,8 +49,7 @@ export default function HomePage({ onNavigate, onCategory }: HomePageProps) {
               Güzellik
             </h1>
             <p className="text-base text-muted-foreground font-light mb-8 leading-relaxed">
-              Her parça, eşsiz bir hikayenin taşıyıcısıdır.
-              Saf altın ve gümüş koleksiyonumuzu keşfedin.
+              bir gün hatırlamak isteyeceğin anlar için.
             </p>
             <div className="flex gap-4 flex-wrap">
               <button
